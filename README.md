@@ -7,11 +7,11 @@ From Phuwanat's Readability code: https://github.com/OOP2020/pa4-phuwanutj
 
 ### haveVowel() Method
 
-In the `src/readability/WordCount.java` class consider this code:
+In the `src/readability/WordCount.java` class 
 
 https://github.com/OOP2020/pa4-phuwanutj/blob/master/src/readability/WordCount.java
 
-it has:
+consider this code:
 
 ```java
     public boolean haveVowel(String word){
@@ -47,12 +47,14 @@ it has:
 ```
 
 * Refactoring: replace indexed for loop with for-each loop
+  - the for-each loop shows your **intention** more clearly than the indexed for loop (improve code clarity)
   - also use string.indexOf(char) instead of the more complex string.contains(string)
   - this avoids creating a lot of 1-char string objects inside the loop
 
 ```java
     public boolean haveVowel(String word){
         final String VOWELS = "aeiouyAEIOUY";
+
         for (char c: word.toCharArray()) { 
             if (VOWELS.indexOf(c) >= 0) return true;
         }
@@ -68,12 +70,11 @@ In Eclipse or IntelliJ, select the method name and use `Refactor -> Rename` to c
 
 ```java
     public boolean hasVowel(String word){
-       ...
 ```
 
 ### BufferWordCount() method
 
-Another method in the same file.  It has **two** blocks of code like this:
+In the same class there is a `BuffereWordcount` method.  It has **two** blocks of code like this:
 
 ```java
     for (int i = 0; i < lineArray.length-1; i++) {
@@ -91,7 +92,7 @@ Another method in the same file.  It has **two** blocks of code like this:
 ```
 
 * Refactoring Signs:
-  1. Redundantly calling `trimSentence.charAt(j)`.  Should assign it to a local variable.
+  1. Redundantly calling `trimSentence.charAt(j)`.  Should replace redundant calls with assignment to a local variable.
   2. Duplicate Code. This block does the same thing as `hasVowel`.
 
 * Refactor: use the existing method! 
@@ -104,6 +105,7 @@ Another method in the same file.  It has **two** blocks of code like this:
 ```
 
 * Refactor: replace indexed for loop with for-each
+  - the for-each loop shows your **intent** more clearly than indexed for loop.
   - Note that it is not necessary to trim the sentence before calling hasVowel. This avoid creating another string.
 
 ```java
