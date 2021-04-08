@@ -33,7 +33,7 @@ consider this code:
 * Coding Style Error:
   - has space before ";" and ")"
 
-* Refactoring: introduce named constant for the vowels
+* Refactoring: introduce a named constant for the vowels
 
 ```java
     public boolean haveVowel(String word){
@@ -48,7 +48,7 @@ consider this code:
 
 * Refactoring: replace indexed for loop with for-each loop
   - the for-each loop shows your **intention** more clearly than the indexed for loop (improve code clarity)
-  - also use string.indexOf(char) instead of the more complex string.contains(string)
+  - use string.indexOf(char) instead of the more complex string.contains(string)
   - this avoids creating a lot of 1-char string objects inside the loop
 
 ```java
@@ -64,7 +64,7 @@ consider this code:
 
 * Refactoring: rename method.
 
-Grammatically, it should be "word *has* a vowel?" (not "have vowel").
+Grammatically, "haveVowel" should be "word *has* a vowel" (not "have vowel").
 
 In Eclipse or IntelliJ, select the method name and use `Refactor -> Rename` to change it everywhere.
 
@@ -74,7 +74,7 @@ In Eclipse or IntelliJ, select the method name and use `Refactor -> Rename` to c
 
 ### BufferWordCount() method
 
-In the same class there is a `BuffereWordcount` method.  It has **two** blocks of code like this:
+In the same class there is a method named `BuffereWordcount`.  It has **two** blocks of code like this:
 
 ```java
     for (int i = 0; i < lineArray.length-1; i++) {
@@ -93,9 +93,10 @@ In the same class there is a `BuffereWordcount` method.  It has **two** blocks o
 
 * Refactoring Signs:
   1. Redundantly calling `trimSentence.charAt(j)`.  Should replace redundant calls with assignment to a local variable.
-  2. Duplicate Code. This block does the same thing as `hasVowel`.
+  2. If statement is very long.
+  3. Duplicate Code. This block does the same thing as `hasVowel`.
 
-* Refactor: use the existing method! 
+* Refactor 1: use the existing `hasVowel` method! 
 
 ```java
     for (int i = 0; i < lineArray.length-1; i++) {
@@ -104,9 +105,9 @@ In the same class there is a `BuffereWordcount` method.  It has **two** blocks o
     }
 ```
 
-* Refactor: replace indexed for loop with for-each
-  - the for-each loop shows your **intent** more clearly than indexed for loop.
-  - Note that it is not necessary to trim the sentence before calling hasVowel. This avoid creating another string.
+* Refactor 2: replace indexed for loop with for-each loop
+  - the for-each loop shows your **intention** more clearly than indexed for loop.
+  - It is not necessary to trim the sentence before calling hasVowel. This avoid creating another string.
 
 ```java
     for (String sentence: lineArray) {
@@ -114,9 +115,9 @@ In the same class there is a `BuffereWordcount` method.  It has **two** blocks o
     }
 ```
 
-* Refactor: this same code block appears **again** in the same method. 
+* Refactor: this same code block appears **again** in the same method.  Apply the same refactorings to that block.
 
-* Refactor: rename method.  `BufferWordCount` violates the Java naming convention.
+* Refactor: rename method.  `BufferWordCount` violates the Java naming convention. Rename it to `bufferWordCount`.
 
 ```java
 public void bufferWordCount(BufferedReader br, String line)
